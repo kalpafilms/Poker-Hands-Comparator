@@ -10,9 +10,9 @@ Note: Requires `.name()` function to retrieve the representation name (The funct
 |-----------|-------|----------------|
 | `JOKER`   | 1     | Joker          |
 | `SPADE`   | 2     | ♠ `\u2660`    |
-| `DIAMOND` | 3     | ♦ `\u2666`    |
+| `CLUB`    | 3     | ♣ `\u2663`    |
 | `HEART`   | 4     | ♥ `\u2665`    |
-| `CLUB`    | 5     | ♣ `\u2663`    |
+| `DIAMOND` | 5     | ♦ `\u2666`    |
 
 ### Number
 
