@@ -14,7 +14,7 @@ Note: Requires `.name()` function to retrieve the representation name (The funct
 | `HEART`   | 4     | ♥ `\u2665`    |
 | `DIAMOND` | 5     | ♦ `\u2666`    |
 
-### Number
+### Rank
 
 | Variant | Value | Representation |
 |---------|-------|----------------|
@@ -61,15 +61,15 @@ Note: Requires `.name()` function to retrieve the representation name (The funct
 ### Card
 
 * Responsibility
-    * Represents a unique suit-number combination
+    * Represents a unique suit-rank combination
     * Dealt and delivered by a dealer to a player
 
 * Attributes
 
-| Field    | Type     | Description           |
-|----------|----------|-----------------------|
-| `suit`   | `Suit`   | Represents its suit   |
-| `number` | `Number` | Represents its number |
+| Field  | Type   | Description         |
+|--------|--------|---------------------|
+| `suit` | `Suit` | Represents its suit |
+| `rank` | `Rank` | Represents its rank |
 
 * Function
     * None
@@ -106,7 +106,7 @@ Note: Requires `.name()` function to retrieve the representation name (The funct
     * Receives and holds up to 5 cards from the dealer
     * Sorts the received cards
     * Groups the sorted cards into 3 groups
-    * Finds the longest number sequence
+    * Finds the longest rank sequence
     * Determines their hand
     * reports the hand to the dealer
 
@@ -120,10 +120,10 @@ Note: Requires `.name()` function to retrieve the representation name (The funct
 
 * Function
 
-| Name                            | Return    | Description                       |
-|---------------------------------|-----------|-----------------------------------|
-| `sort(cards)`                   | `HashMap` | Sorts the received cards          |
-| `group(cards)`                  | `HashMap` | Groups the cards into 3 groups    |
-| `is_straight(grouped_cards[2])` | `bool`    | Checks for a straight             |
-| `is_flush(r_group[2])`          | `bool`    | Checks for a flush                |
-| `determine_hand(grouped_cards)` | `Hand`    | Determines their hand             |
+| Name                            | Return    | Description                    |
+|---------------------------------|-----------|--------------------------------|
+| `sort(cards)`                   | `HashMap` | Sorts the received cards       |
+| `group(cards)`                  | `HashMap` | Groups the cards into 3 groups |
+| `is_straight(grouped_cards[2])` | `bool`    | Checks for a straight          |
+| `is_flush(r_group[2])`          | `bool`    | Checks for a flush             |
+| `determine_hand(grouped_cards)` | `Hand`    | Determines their hand          |

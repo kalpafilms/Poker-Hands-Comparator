@@ -1,9 +1,10 @@
 use strum::{Display, EnumCount};
 
 /// Suit enum to represent the suit on a card.
+/// Suits support only equality comparison.
 #[repr(u8)]
-#[derive(Display, EnumCount)]
-enum Suit {
+#[derive(Debug, PartialEq, Display, EnumCount)]
+pub enum Suit {
     Joker = 1,
     #[strum(to_string = "\u{2660}")]
     Spade = 2,
@@ -20,6 +21,7 @@ enum Suit {
 /////////////////////////////////////////////////
 #[test]
 fn suit_enum_should_include_four_suits_and_a_joker() {
+    // Playing card suits are fixed
     assert_eq!(5, Suit::COUNT);
 
     assert_eq!(1, Suit::Joker as u8);
@@ -36,4 +38,10 @@ fn suit_enum_should_display_its_string() {
     assert_eq!("\u{2666}", Suit::Diamond.to_string());
     assert_eq!("\u{2665}", Suit::Heart.to_string());
     assert_eq!("\u{2663}", Suit::Club.to_string());
+}
+
+#[test]
+fn suit_enum_should_be_able_to_check_equality() {
+    assert_eq!(Suit::Spade, Suit::Spade);
+    assert_ne!(Suit::Spade, Suit::Club);
 }
