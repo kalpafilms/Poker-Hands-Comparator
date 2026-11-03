@@ -1,8 +1,11 @@
+use num_enum::TryFromPrimitive;
 use strum::{Display, EnumCount};
 
 /// Rank enum to represent the rank on a card.
+/// Rank enum must have exactly 14 types and must be exhaustive.
 /// Ranks support equality and ordering comparisons.
-#[derive(Debug, PartialEq, PartialOrd, Display, EnumCount)]
+#[repr(u8)]
+#[derive(Debug, PartialEq, Eq, Hash, PartialOrd, Copy, Clone, Display, EnumCount, TryFromPrimitive)]
 pub enum Rank {
     Joker = 1,
     #[strum(to_string = "2")]

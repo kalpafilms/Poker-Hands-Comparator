@@ -74,6 +74,26 @@ Note: Requires `.name()` function to retrieve the representation name (The funct
 * Function
     * None
 
+### Deck
+
+* Responsibility
+    * Holds up to 53 unique cards
+    * Is shuffled
+    * Draws a card from itself
+
+* Attributes
+
+| Field  | Type           | Description             |
+|--------|----------------|-------------------------|
+| `deck` | `Card` HashSet | Contains up to 53 cards |
+
+* Function
+
+| Name     | Return | Description                                   |
+|----------|--------|-----------------------------------------------|
+| `new()`  | `Unit` | Instantiates 53 unique cards and shuffle them |
+| `draw()` | `Card` | Draws the top card from the deck              |
+
 ### Dealer
 
 * Responsibility
@@ -87,18 +107,16 @@ Note: Requires `.name()` function to retrieve the representation name (The funct
 
 * Attribute
 
-| Field  | Type          | Description             |
-|--------|---------------|-------------------------|
-| `deck` | `Card` vector | Contains up to 53 cards |
+| Field  | Type   | Description                                |
+|--------|--------|--------------------------------------------|
+| `deck` | `Deck` | A deck instantiated when dealer is created |
 
 * Function
 
-| Name                      | Return | Description                                   |
-|---------------------------|--------|-----------------------------------------------|
-| `init_deck()`             | `Unit` | Instantiates 53 unique cards and shuffle them |
-| `draw_card()`             | `Card` | Draws the top card from the deck              |
-| `deal_card(player)`       | `Unit` | Deals cards to the players                    |
-| `declare_result(players)` | `Unit` | Decleres the game result                      |
+| Name                      | Return | Description                |
+|---------------------------|--------|----------------------------|
+| `deal_card(player)`       | `Unit` | Deals cards to the players |
+| `declare_result(players)` | `Unit` | Decleres the game result   |
 
 ### Player
 

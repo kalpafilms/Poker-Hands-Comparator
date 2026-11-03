@@ -1,9 +1,11 @@
+use num_enum::TryFromPrimitive;
 use strum::{Display, EnumCount};
 
 /// Suit enum to represent the suit on a card.
+/// Suit enum must have exactly five types and must be exhaustive.
 /// Suits support only equality comparison.
 #[repr(u8)]
-#[derive(Debug, PartialEq, Display, EnumCount)]
+#[derive(Debug, PartialEq, Eq, Hash, Copy, Clone, Display, EnumCount, TryFromPrimitive)]
 pub enum Suit {
     Joker = 1,
     #[strum(to_string = "\u{2660}")]
