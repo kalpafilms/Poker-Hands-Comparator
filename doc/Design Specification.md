@@ -10,11 +10,11 @@ Note: Requires `.name()` function to retrieve the representation name (The funct
 |-----------|-------|----------------|
 | `JOKER`   | 1     | Joker          |
 | `SPADE`   | 2     | ♠ `\u2660`    |
-| `DIAMOND` | 3     | ♦ `\u2666`    |
+| `CLUB`    | 3     | ♣ `\u2663`    |
 | `HEART`   | 4     | ♥ `\u2665`    |
-| `CLUB`    | 5     | ♣ `\u2663`    |
+| `DIAMOND` | 5     | ♦ `\u2666`    |
 
-### Number
+### Rank
 
 | Variant | Value | Representation |
 |---------|-------|----------------|
@@ -61,18 +61,38 @@ Note: Requires `.name()` function to retrieve the representation name (The funct
 ### Card
 
 * Responsibility
-    * Represents a unique suit-number combination
+    * Represents a unique suit-rank combination
     * Dealt and delivered by a dealer to a player
 
 * Attributes
 
-| Field    | Type     | Description           |
-|----------|----------|-----------------------|
-| `suit`   | `Suit`   | Represents its suit   |
-| `number` | `Number` | Represents its number |
+| Field  | Type   | Description         |
+|--------|--------|---------------------|
+| `suit` | `Suit` | Represents its suit |
+| `rank` | `Rank` | Represents its rank |
 
 * Function
     * None
+
+### Deck
+
+* Responsibility
+    * Holds up to 53 unique cards
+    * Is shuffled
+    * Draws a card from itself
+
+* Attributes
+
+| Field  | Type           | Description             |
+|--------|----------------|-------------------------|
+| `deck` | `Card` HashSet | Contains up to 53 cards |
+
+* Function
+
+| Name     | Return | Description                                   |
+|----------|--------|-----------------------------------------------|
+| `new()`  | `Unit` | Instantiates 53 unique cards and shuffle them |
+| `draw()` | `Card` | Draws the top card from the deck              |
 
 ### Dealer
 
@@ -87,18 +107,16 @@ Note: Requires `.name()` function to retrieve the representation name (The funct
 
 * Attribute
 
-| Field  | Type          | Description             |
-|--------|---------------|-------------------------|
-| `deck` | `Card` vector | Contains up to 53 cards |
+| Field  | Type   | Description                                |
+|--------|--------|--------------------------------------------|
+| `deck` | `Deck` | A deck instantiated when dealer is created |
 
 * Function
 
-| Name                      | Return | Description                                   |
-|---------------------------|--------|-----------------------------------------------|
-| `init_deck()`             | `Unit` | Instantiates 53 unique cards and shuffle them |
-| `draw_card()`             | `Card` | Draws the top card from the deck              |
-| `deal_card(player)`       | `Unit` | Deals cards to the players                    |
-| `declare_result(players)` | `Unit` | Decleres the game result                      |
+| Name                      | Return | Description                |
+|---------------------------|--------|----------------------------|
+| `deal_card(player)`       | `Unit` | Deals cards to the players |
+| `declare_result(players)` | `Unit` | Decleres the game result   |
 
 ### Player
 
@@ -106,7 +124,7 @@ Note: Requires `.name()` function to retrieve the representation name (The funct
     * Receives and holds up to 5 cards from the dealer
     * Sorts the received cards
     * Groups the sorted cards into 3 groups
-    * Finds the longest number sequence
+    * Finds the longest rank sequence
     * Determines their hand
     * reports the hand to the dealer
 
@@ -120,10 +138,10 @@ Note: Requires `.name()` function to retrieve the representation name (The funct
 
 * Function
 
-| Name                            | Return    | Description                       |
-|---------------------------------|-----------|-----------------------------------|
-| `sort(cards)`                   | `HashMap` | Sorts the received cards          |
-| `group(cards)`                  | `HashMap` | Groups the cards into 3 groups    |
-| `is_straight(grouped_cards[2])` | `bool`    | Checks for a straight             |
-| `is_flush(r_group[2])`          | `bool`    | Checks for a flush                |
-| `determine_hand(grouped_cards)` | `Hand`    | Determines their hand             |
+| Name                            | Return    | Description                    |
+|---------------------------------|-----------|--------------------------------|
+| `sort(cards)`                   | `HashMap` | Sorts the received cards       |
+| `group(cards)`                  | `HashMap` | Groups the cards into 3 groups |
+| `is_straight(grouped_cards[2])` | `bool`    | Checks for a straight          |
+| `is_flush(r_group[2])`          | `bool`    | Checks for a flush             |
+| `determine_hand(grouped_cards)` | `Hand`    | Determines their hand          |
