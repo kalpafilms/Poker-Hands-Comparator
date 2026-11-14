@@ -1,11 +1,12 @@
-use num_enum::TryFromPrimitive;
+use std::ops::Sub;
+
 use strum::{Display, EnumCount};
 
 /// Rank enum to represent the rank on a card.
 /// Rank enum must have exactly 14 types and must be exhaustive.
 /// Ranks support equality and ordering comparisons.
 #[repr(u8)]
-#[derive(Debug, PartialEq, Eq, Hash, PartialOrd, Copy, Clone, Display, EnumCount, TryFromPrimitive)]
+#[derive(Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Copy, Clone, Display, EnumCount)]
 pub enum Rank {
     Joker = 1,
     #[strum(to_string = "2")]
@@ -34,6 +35,14 @@ pub enum Rank {
     King = 13,
     #[strum(to_string = "A")]
     Ace = 14,
+}
+
+impl Sub for Rank {
+    type Output = i8;
+
+    fn sub(self, rhs: Self) -> i8 {
+        self as i8 - rhs as i8
+    }
 }
 
 /////////////////////////////////////////////////
@@ -86,6 +95,23 @@ fn rank_enum_should_be_able_to_check_equality() {
 
 #[test]
 fn rank_enum_should_be_comparable() {
+    assert!(Rank::Joker < Rank::Two);
     assert!(Rank::Two < Rank::Three);
-    assert!(Rank::Ace > Rank::Jack);
+    assert!(Rank::Three < Rank::Four);
+    assert!(Rank::Four < Rank::Five);
+    assert!(Rank::Five < Rank::Six);
+    assert!(Rank::Six < Rank::Seven);
+    assert!(Rank::Seven < Rank::Eight);
+    assert!(Rank::Eight < Rank::Nine);
+    assert!(Rank::Nine < Rank::Ten);
+    assert!(Rank::Ten < Rank::Jack);
+    assert!(Rank::Jack < Rank::Queen);
+    assert!(Rank::Queen < Rank::King);
+    assert!(Rank::King < Rank::Ace);
+}
+
+#[test]
+fn rank_enum_should_be_able_to_be_subtracted() {
+    let diff = Rank::Five - Rank::Three;
+    assert_eq!(2, diff);
 }

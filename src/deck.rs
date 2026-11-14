@@ -1,4 +1,4 @@
-mod card;
+pub mod card;
 
 #[cfg(test)]
 mod tests;
@@ -7,7 +7,6 @@ use std::collections::HashSet;
 use std::marker::PhantomData;
 
 use itertools::iproduct;
-use num_enum::TryFromPrimitive;
 
 use card::Card;
 use card::rank::Rank;
@@ -29,16 +28,25 @@ impl Deck {
         // Insert Joker card
         cards.insert(Card::new(Suit::Joker, Rank::Joker));
         // Insert regular cards
-        let suit_range = 2_u8..=5_u8;
-        let rank_range = 2_u8..=14_u8;
+        let suits = [Suit::Spade, Suit::Club, Suit::Heart, Suit::Diamond];
+        let ranks = [
+            Rank::Two,
+            Rank::Three,
+            Rank::Four,
+            Rank::Five,
+            Rank::Six,
+            Rank::Seven,
+            Rank::Eight,
+            Rank::Nine,
+            Rank::Ten,
+            Rank::Jack,
+            Rank::Queen,
+            Rank::King,
+            Rank::Ace,
+        ];
 
-        for (suit, rank) in iproduct!(suit_range, rank_range) {
-            if let (Ok(suit), Ok(rank)) = (
-                Suit::try_from_primitive(suit),
-                Rank::try_from_primitive(rank),
-            ) {
-                cards.insert(Card::new(suit, rank));
-            }
+        for (suit, rank) in iproduct!(suits, ranks) {
+            cards.insert(Card::new(suit, rank));
         }
 
         Self {

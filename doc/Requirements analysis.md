@@ -108,7 +108,7 @@ Dealer has multiple responsibilities
 * The group pertains to One/Two pairs, Three/Four/Five of a kind, and Full house combinations
 * Cards form three sets: first group, second group, residue
 * The second group’s rank is higher due to sorting
-* Example: [♠2, ♦2, ♠3, ♦3, ♠4] → [♠2, ♦2], [♠3, ♦3], [5]
+* Example: \[♠2, ♦2, ♠3, ♦3, ♠4\] → \[♠2, ♦2\], \[♠3, ♦3\], \[♠4\]
 
 ### Hand determiner
 
@@ -149,7 +149,7 @@ Dealer has multiple responsibilities
 * The count is related to Flush and Straight flush
 * Counter tracks only the maximum count
 * If two or more suit counts are equal, only the first suit is used
-    * Possible combinations are [5, 0, 0, 0], [4, 1, 0, 0], [3, 2, 0, 0], [3, 1, 1, 0], [2, 2, 1, 0], [2, 1, 1, 1]
+    * Possible combinations are \[5, 0, 0, 0\], \[4, 1, 0, 0\], \[3, 2, 0, 0\], \[3, 1, 1, 0\], \[2, 2, 1, 0\], \[2, 1, 1, 1\]
     * i.e., two or more suit counts mean they cannot form a Flush or Straight flush
 
 ### Sequential finder

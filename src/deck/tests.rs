@@ -1,5 +1,8 @@
 use super::*;
 
+/////////////////////////////////////////////////
+// Instantiation
+/////////////////////////////////////////////////
 #[test]
 fn deck_when_instantiated_should_contains_53cards() {
     let deck = Deck::new();
@@ -99,6 +102,9 @@ fn draw_when_draw_a_card_should_not_be_none() {
     assert_eq!(52, deck.cards.len());
 }
 
+/////////////////////////////////////////////////
+// Deck::draw()
+/////////////////////////////////////////////////
 #[test]
 fn draw_when_draw_54_cards_should_be_none_the_last_one() {
     let mut deck = Deck::new();
@@ -114,7 +120,7 @@ fn draw_when_draw_54_cards_should_be_none_the_last_one() {
 }
 
 #[test]
-fn draw_when_draw_all_from_two_decks_should_both_have_distint_order() {
+fn draw_when_draw_all_from_two_decks_should_both_have_distinct_order() {
     let mut deck_1 = Deck::new();
     let mut deck_2 = Deck::new();
 
