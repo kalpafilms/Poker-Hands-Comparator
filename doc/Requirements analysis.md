@@ -14,14 +14,14 @@ Compare two 5-card poker hands
 
 ## Actors
 
-* Card: represents a card that has suit and rank attributes
+* Card: represents a card that has suit and number attributes
 * Deck: represents a card deck that has 53 unique cards in it
 * Dealer: deals cards to players
 * Dealer (as result declarer): declares the game result
 * Player: holds up to 5 dealt cards
-* Player (as card grouper): sorts cards by rank and groups them into 3 by rank
-* Player (as suit counter): counts rank per suit
-* Player (as sequential finder): finds the longest rank sequence
+* Player (as card grouper): sorts cards by number and groups them into 3 by number
+* Player (as suit counter): counts number per suit
+* Player (as sequential finder): finds the longest number sequence
 * Player (as hand determiner): determines its hand
 
 ## Flow per actor
@@ -31,7 +31,7 @@ Compare two 5-card poker hands
 3. Dealer: Deal cards to players
 4. Player: Sort and group dealt cards
 5. Player: Count suits
-6. Player: Count sequential ranks
+6. Player: Count sequential numbers
 7. Player: Determine their hand
 8. Dealer: Compare all hands
 9. Dealer: Declare winners and losers
@@ -48,14 +48,14 @@ Compare two 5-card poker hands
 
 #### Characteristics
 
-* A card has 'suit' and 'rank' attributes
+* A card has 'suit' and 'number' attributes
     * 'Suit' consists of 4 types; Spade, Diamond, Heart, and Club
-    * 'Rank' consists of 13 sequential ranks; 2 to 10, J (11), Q (12), K (13), and A (14)
-* A card is one of 52 combinations (4 suits × 13 ranks)
-* The joker card has its own unique suit and rank
+    * 'Number' consists of 13 sequential numbers; 2 to 10, J (11), Q (12), K (13), and A (14)
+* A card is one of 52 combinations (4 suits × 13 numbers)
+* The joker card has its own unique suit and number
     * Only the Joker card has the Joker attribute
-    * No other card can have the Joker attribute in its suit, rank, or both attributes
-* A single card is comparable with another single card by their ranks
+    * No other card can have the Joker attribute in its suit, number, or both attributes
+* A single card is comparable with another single card by their numbers
 
 ### Deck
 
@@ -76,10 +76,10 @@ Compare two 5-card poker hands
 Player has multiple responsibilities
 
 * Receives and holds cards
-* Sorts and groups cards by rank
-* Counts rank of the same suit
-* Finds longest consecutive sequence of ranks
-* Determines hand according to hand ranking table
+* Sorts and groups cards by number
+* Counts number of the same suit
+* Finds longest consecutive sequence of numbers
+* Determines hand according to hand rank table
 
 #### Characteristics
 
@@ -104,11 +104,11 @@ Dealer has multiple responsibilities
 
 ### Card grouper
 
-* Grouper clusters cards by rank
+* Grouper clusters cards by number
 * The group pertains to One/Two pairs, Three/Four/Five of a kind, and Full house combinations
 * Cards form three sets: first group, second group, residue
-* The second group’s rank is higher due to sorting
-* Example: \[♠2, ♦2, ♠3, ♦3, ♠4\] → \[♠2, ♦2\], \[♠3, ♦3\], \[♠4\]
+* The second group’s number is higher due to sorting
+* Example: [♠2, ♦2, ♠3, ♦3, ♠4] → [♠2, ♦2], [♠3, ♦3], [5]
 
 ### Hand determiner
 
@@ -141,7 +141,7 @@ Dealer has multiple responsibilities
     * Two pair → Full house
     * Three of a kind → Four of a kind
     * Four of a kind → Five of a kind
-    * High card needs to evaluate rank and suit for One pair, Straight, Flush, and Straight flush
+    * High card needs to evaluate number and suit for One pair, Straight, Flush, and Straight flush
 
 ### Suit counter
 
@@ -149,20 +149,20 @@ Dealer has multiple responsibilities
 * The count is related to Flush and Straight flush
 * Counter tracks only the maximum count
 * If two or more suit counts are equal, only the first suit is used
-    * Possible combinations are \[5, 0, 0, 0\], \[4, 1, 0, 0\], \[3, 2, 0, 0\], \[3, 1, 1, 0\], \[2, 2, 1, 0\], \[2, 1, 1, 1\]
+    * Possible combinations are [5, 0, 0, 0], [4, 1, 0, 0], [3, 2, 0, 0], [3, 1, 1, 0], [2, 2, 1, 0], [2, 1, 1, 1]
     * i.e., two or more suit counts mean they cannot form a Flush or Straight flush
 
 ### Sequential finder
 
-* Finder finds the longest sequential rank
-* The sequential rank is related to Straight and Straight flush
+* Finder finds the longest sequential number
+* The sequential number is related to Straight and Straight flush
 
 ### Hand comparer
 
-* Comparer compares two hands using the hand ranking table
+* Comparer compares two hands using the hand rank table
 * Higher rank wins
-* If hands are identical, the higher rank wins
-    * High card, Straight, Flush, Straight flush: last rank of the residue group
-    * One pair, Three of a kind, Four of a kind, Five of a kind: last rank of the first group
-    * Two pair: last rank of the second group
-    * Full house: last rank of a group that has 3 cards
+* If hands are identical, the higher number wins
+    * High card, Straight, Flush, Straight flush: last number of the residue group
+    * One pair, Three of a kind, Four of a kind, Five of a kind: last number of the first group
+    * Two pair: last number of the second group
+    * Full house: last number of a group that has 3 cards
